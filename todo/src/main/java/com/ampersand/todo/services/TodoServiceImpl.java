@@ -60,6 +60,7 @@ public class TodoServiceImpl implements TodoService
                 Todo todo1 = findTodoById(todoid);
                 todo1.setDatestarted(todo.getDatestarted());
                 todo1.setDescription(todo.getDescription());
+                todo1.setComplete(todo.isComplete());
 
                 return todorepos.save(todo1);
             } else

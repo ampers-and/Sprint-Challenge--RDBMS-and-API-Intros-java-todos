@@ -2,6 +2,7 @@ package com.ampersand.todo;
 
 import com.ampersand.todo.models.*;
 import com.ampersand.todo.services.RoleService;
+import com.ampersand.todo.services.TodoService;
 import com.ampersand.todo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,6 +22,9 @@ public class SeedData implements CommandLineRunner
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    TodoService todoService;
 
 
     @Override
@@ -111,5 +115,19 @@ public class SeedData implements CommandLineRunner
                 "misskitty@school.lambda",
                 users);
         userService.save(u5);
+
+
+//        Todo t1 = new Todo("Please work", new Date(), new User());
+//        Todo t2 = new Todo("Please work2", new Date(),  new User());
+//        Todo t3 = new Todo("Please work3", new Date(),  new User());
+//        Todo t4 = new Todo("Please work4", new Date(),  new User());
+//        Todo t5 = new Todo("Please work5", new Date(),  new User());
+//
+//        todoService.save(t1);
+//        todoService.save(t2);
+//        todoService.save(t3);
+//        todoService.save(t4);
+//        todoService.save(t5);
+
     }
 }

@@ -43,8 +43,8 @@ public class TodoServiceImpl implements TodoService
     }
 
     @Override
-    public Todo update(Todo todo, long todoid,
-                            boolean isUser)
+    public Todo update(Todo todo, long todoid)
+                            //boolean isUser)
     {
         Authentication authentication = SecurityContextHolder.getContext()
                 .getAuthentication();
@@ -55,7 +55,7 @@ public class TodoServiceImpl implements TodoService
                     .get()
                     .getUser()
                     .getUsername()
-                    .equalsIgnoreCase(authentication.getName()) || isUser)
+                    .equalsIgnoreCase(authentication.getName())) // || isUser)
             {
                 Todo todo1 = findTodoById(todoid);
                 todo1.setDatestarted(todo.getDatestarted());
@@ -71,5 +71,11 @@ public class TodoServiceImpl implements TodoService
         {
             throw new EntityNotFoundException("Todo with id " + todoid + " Not Found!");
         }
+    }
+
+    @Override
+    public Todo save(Todo todo)
+    {
+        return todorepos.save(todo);
     }
 }

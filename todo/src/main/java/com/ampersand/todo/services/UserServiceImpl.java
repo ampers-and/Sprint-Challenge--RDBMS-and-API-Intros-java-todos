@@ -121,6 +121,12 @@ public class UserServiceImpl implements UserDetailsService, //auth needed to be 
                                       ue.getUseremail()));
         }
 
+        for (Todo todo : user.getTodos())
+        {
+            newUser.getTodos()
+                    .add(new Todo(todo.getDescription(), todo.getDatestarted(), newUser));
+        }
+
         return userrepos.save(newUser);
     }
 

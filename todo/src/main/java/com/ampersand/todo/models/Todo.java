@@ -1,13 +1,11 @@
 package com.ampersand.todo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 
 import java.util.Date;
 
-import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity
 @Table(name = "todos")
@@ -20,15 +18,13 @@ public class Todo extends Auditable
     @Column(nullable = false)
     private String description;
 
-    @CreatedDate
-    @Temporal(TIMESTAMP)
     private Date datestarted;
 
     private boolean complete = false;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userid", nullable = false)
-    @JsonIgnoreProperties("todos")
+    @JsonIgnoreProperties({"todos", "hibernateLazyInitializer"})
     private User user;
 
     public Todo()

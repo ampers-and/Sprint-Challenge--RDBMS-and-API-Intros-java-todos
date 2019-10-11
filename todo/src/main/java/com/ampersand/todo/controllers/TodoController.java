@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("/todos")
@@ -29,10 +30,17 @@ public class TodoController
                     long id)
     {
         todoService.update(updateTodo,
-                id,
-                request.isUserInRole("USER"));
+                id);
+//                request.isUserInRole("USER"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping(value="/todos", produces={"application/json"})
+    public ResponseEntity<?> getAllTodos()
+    {
+        List<Todo> todos = todoService.findAll();
+        return new ResponseEntity<>(todos,
+                HttpStatus.OK);
+    }
 
 }

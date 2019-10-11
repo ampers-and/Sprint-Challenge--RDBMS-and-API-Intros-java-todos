@@ -1,5 +1,6 @@
 package com.ampersand.todo.repositories;
 
+import com.ampersand.todo.models.Todo;
 import com.ampersand.todo.models.User;
 import org.springframework.data.repository.CrudRepository;
 

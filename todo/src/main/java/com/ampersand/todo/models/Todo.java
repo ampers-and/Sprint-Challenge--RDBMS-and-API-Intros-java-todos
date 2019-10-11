@@ -11,7 +11,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity
 @Table(name = "todos")
-public class Todo
+public class Todo extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

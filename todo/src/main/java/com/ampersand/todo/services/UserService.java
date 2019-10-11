@@ -1,6 +1,7 @@
 package com.ampersand.todo.services;
 
 
+import com.ampersand.todo.models.Todo;
 import com.ampersand.todo.models.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -27,11 +28,5 @@ public interface UserService
             long id,
             boolean isAdmin);
 
-    void deleteUserRole(
-            long userid,
-            long roleid);
-
-    void addUserRole(
-            long userid,
-            long roleid);
+    void addTodo(Todo todo, long id);
 }

@@ -1,10 +1,8 @@
 package com.ampersand.todo.services;
 
-import com.ampersand.todo.models.Role;
-import com.ampersand.todo.models.User;
-import com.ampersand.todo.models.UserRoles;
-import com.ampersand.todo.models.Useremail;
+import com.ampersand.todo.models.*;
 import com.ampersand.todo.repositories.RoleRepository;
+import com.ampersand.todo.repositories.TodoRepository;
 import com.ampersand.todo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -30,6 +28,9 @@ public class UserServiceImpl implements UserDetailsService, //auth needed to be 
 
     @Autowired
     private RoleRepository rolerepos;
+
+    @Autowired
+    private TodoRepository todorepos;
 
     @Transactional
     @Override
@@ -179,45 +180,13 @@ public class UserServiceImpl implements UserDetailsService, //auth needed to be 
 
     @Transactional
     @Override
-    public void deleteUserRole(long userid,
-                               long roleid)
+    public void addTodo(Todo todo, long id)
     {
-        userrepos.findById(userid)
-                 .orElseThrow(() -> new EntityNotFoundException("User id " + userid + " not found!"));
-        rolerepos.findById(roleid)
-                 .orElseThrow(() -> new EntityNotFoundException("Role id " + roleid + " not found!"));
+        User currentUser = userrepos.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User id " + id + " not found!"));
 
-        if (rolerepos.checkUserRolesCombo(userid,
-                                          roleid)
-                     .getCount() > 0)
-        {
-            rolerepos.deleteUserRoles(userid,
-                                      roleid);
-        } else
-        {
-            throw new EntityNotFoundException("Role and User Combination Does Not Exists");
-        }
-    }
+        currentUser.getTodos().add(todo);
+        userrepos.save(currentUser);
 
-    @Transactional
-    @Override
-    public void addUserRole(long userid,
-                            long roleid)
-    {
-        userrepos.findById(userid)
-                 .orElseThrow(() -> new EntityNotFoundException("User id " + userid + " not found!"));
-        rolerepos.findById(roleid)
-                 .orElseThrow(() -> new EntityNotFoundException("Role id " + roleid + " not found!"));
-
-        if (rolerepos.checkUserRolesCombo(userid,
-                                          roleid)
-                     .getCount() <= 0)
-        {
-            rolerepos.insertUserRoles(userid,
-                                      roleid);
-        } else
-        {
-            throw new EntityNotFoundException("Role and User Combination Already Exists");
-        }
     }
 }

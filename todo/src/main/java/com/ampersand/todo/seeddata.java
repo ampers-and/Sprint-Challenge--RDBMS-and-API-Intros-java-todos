@@ -1,6 +1,10 @@
-import com.lambdaschool.todo.models.*;
-import com.lambdaschool.todo.services.RoleService;
-import com.lambdaschool.todo.services.UserService;
+
+import com.ampersand.todo.models.Role;
+import com.ampersand.todo.models.User;
+import com.ampersand.todo.models.UserRoles;
+import com.ampersand.todo.models.Useremail;
+import com.ampersand.todo.services.RoleService;
+import com.ampersand.todo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

@@ -28,5 +28,5 @@ public interface UserService
             long id,
             boolean isAdmin);
 
-    void addTodo(Todo todo, long id);
+    User addTodo(Todo todo, long id);
 }

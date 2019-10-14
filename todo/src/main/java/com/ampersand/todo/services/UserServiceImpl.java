@@ -184,15 +184,13 @@ public class UserServiceImpl implements UserDetailsService, //auth needed to be 
         }
     }
 
-    @Transactional
     @Override
-    public void addTodo(Todo todo, long id)
+    public User addTodo(Todo todo, long id)
     {
         User currentUser = userrepos.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User id " + id + " not found!"));
 
-        currentUser.getTodos().add(todo);
-        userrepos.save(currentUser);
-
+        currentUser.getTodos().add(new Todo(todo.getDescription(), todo.getDatestarted(), currentUser));
+        return userrepos.save(currentUser);
     }
 }

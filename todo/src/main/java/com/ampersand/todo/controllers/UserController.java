@@ -66,12 +66,12 @@ public class UserController
     //POST: http:localhost:2020/users/todo/{userid}
     @PostMapping(value = "/todo/{userid}", consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<?> addUserTodo(
-                                         @RequestBody Todo ntodo,
+                                         @Valid @RequestBody Todo ntodo,
                                          @PathVariable long userid)
         {
             userService.addTodo(ntodo, userid);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         }
 
 

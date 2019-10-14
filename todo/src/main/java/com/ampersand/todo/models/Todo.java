@@ -20,7 +20,7 @@ public class Todo extends Auditable
 
     private Date datestarted;
 
-    private boolean complete = false;
+    private boolean completed = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userid", nullable = false)
@@ -68,14 +68,14 @@ public class Todo extends Auditable
         this.datestarted = datestarted;
     }
 
-    public boolean isComplete()
+    public boolean isCompleted()
     {
-        return complete;
+        return completed;
     }
 
-    public void setComplete(boolean complete)
+    public void setCompleted(boolean completed)
     {
-        this.complete = complete;
+        this.completed = completed;
     }
 
     public User getUser()

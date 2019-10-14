@@ -30,8 +30,8 @@ public class TodoController
                     long id)
     {
         todoService.update(updateTodo,
-                id);
-//                request.isUserInRole("USER"));
+                id,
+                request.isUserInRole("USER"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

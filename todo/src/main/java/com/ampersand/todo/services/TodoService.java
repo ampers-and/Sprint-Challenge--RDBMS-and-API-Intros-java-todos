@@ -13,7 +13,7 @@ public interface TodoService
 
     List<Todo> findByUserid(long id);
 
-    Todo update(Todo todo, long id );//boolean isUser);
+    Todo update(Todo todo, long id, boolean isUser);
 
     Todo save(Todo todo);
 }
